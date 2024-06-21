@@ -8,6 +8,12 @@
 	<packaging>maven-plugin</packaging>
 	<description>Plugin for modify plugin.yml add put libraries from dependency</description>
 	<url>https://github.com/lorisdemicheli/minecraft-package</url>
+	
+	<properties>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.deploy.skip>true</maven.deploy.skip>
+	</properties>
 
 	<developers>
 		<developer>
