@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>io.github.lorisdemicheli</groupId>
 	<artifactId>minecraft-package</artifactId>
-	<version>1.0</version>
+	<version>1.0.1</version>
 	<packaging>maven-plugin</packaging>
 	<description>Plugin for modify plugin.yml add put libraries from dependency</description>
 	<url>https://github.com/lorisdemicheli/minecraft-package</url>

@@ -46,26 +46,27 @@ public class BuildJarMojo extends AbstractMojo {
 	}
 
 	private void buildPluginFile() throws IOException {
-        DumperOptions options = new DumperOptions();
-        options.setDefaultFlowStyle(DumperOptions.FlowStyle.BLOCK);
-        Representer representer = new Representer();
-        representer.getPropertyUtils().setSkipMissingProperties(true);
-        
-        Yaml yaml = new Yaml(representer, options);
+		DumperOptions options = new DumperOptions();
+		options.setDefaultFlowStyle(DumperOptions.FlowStyle.BLOCK);
+		Representer representer = new Representer();
+		representer.getPropertyUtils().setSkipMissingProperties(true);
+
+		Yaml yaml = new Yaml(representer, options);
 		Map<String, Object> data = yaml.load(new FileInputStream(pluginFile));
 		List<String> dependencies = new ArrayList<>();
 		for (Dependency dependency : project.getDependencies()) {
-			if(isValidDependency(dependency)) {
-				String value = dependency.getGroupId() + ":" + dependency.getArtifactId() + ":" + dependency.getVersion();
+			if (isValidDependency(dependency)) {
+				String value = dependency.getGroupId() + ":" + dependency.getArtifactId() + ":"
+						+ dependency.getVersion();
 				dependencies.add(value);
 			}
 		}
 		data.put("libraries", dependencies);
 		yaml.dump(data, new FileWriter(pluginFile));
 	}
-	
+
 	private boolean isValidDependency(Dependency dependency) {
-		if(dependency.isOptional()) {
+		if (dependency.isOptional()) {
 			return false;
 		} else {
 			switch (dependency.getScope()) {
@@ -73,7 +74,7 @@ public class BuildJarMojo extends AbstractMojo {
 			case "runtime":
 				return true;
 			case "test":
-			case "system": 
+			case "system":
 			case "provided":
 				return false;
 			default:
